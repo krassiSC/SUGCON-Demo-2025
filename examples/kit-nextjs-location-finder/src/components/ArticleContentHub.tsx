@@ -42,7 +42,9 @@ const ArticleContent = (props: ArticleContentProps): JSX.Element => {
         </>
       ) : (
         <>
-          <h2>{data?.title}</h2>
+          <h2 className='class="font-heading mb-8 text-pretty text-5xl font-light antialiased"'>
+            {data?.title}
+          </h2>
           <div dangerouslySetInnerHTML={{ __html: data?.body || '' }} />
         </>
       )}
@@ -50,7 +52,9 @@ const ArticleContent = (props: ArticleContentProps): JSX.Element => {
   );
 };
 
-export const getStaticProps: GetComponentServerProps = async (rendering: ComponentRendering) => {
+export const getComponentServerProps: GetComponentServerProps = async (
+  rendering: ComponentRendering
+) => {
   const fields = rendering.fields as { ArticleId: Field<string> };
   const post = await GetPageItem(fields.ArticleId.value);
 
