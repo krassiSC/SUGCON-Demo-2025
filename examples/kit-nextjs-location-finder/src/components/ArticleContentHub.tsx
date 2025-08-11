@@ -6,6 +6,7 @@ import {
   useComponentProps,
 } from '@sitecore-content-sdk/nextjs';
 import { ComponentRendering } from '@sitecore-content-sdk/nextjs';
+import { cn } from '@/lib/utils';
 
 type ComponentProps = {
   rendering: ComponentRendering;
@@ -30,7 +31,10 @@ const ArticleContent = (props: ArticleContentProps): JSX.Element => {
   const data = useComponentProps<ArticleData>(props.rendering.uid);
   const id = props.params.RenderingIdentifier;
   return (
-    <div className={`component promo ${props?.params?.styles}`} id={id ? id : undefined}>
+    <div
+      className={cn('component rich-text', props.params.styles?.trimEnd())}
+      id={id ? id : undefined}
+    >
       {data?.id === 'dummy-id' ? (
         <>
           <h2>Content Hub Article</h2>
